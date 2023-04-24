@@ -85,6 +85,8 @@ def gtf_iterator(gtf_fn,
         gene_to_locus_mapping = {}
     with open(gtf_fn) as gtf:
         for i, record in enumerate(gtf):
+            if record.startswith("#"):
+                continue
             record = record.split('\t')
             chrom, _, feat_type, start, end, _, strand = record[:7]
             start = int(start) - 1
